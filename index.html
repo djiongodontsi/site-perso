@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dany Brel Djiongo Dontsi - Étudiant en informatique</title>
+  <meta name="description"
+    content="Portfolio de Dany Brel Djiongo Dontsi, étudiant en informatique spécialisé en développement web, systèmes et réseaux." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="logo">Dany Brel <span class="logo-surname">DJIONGO</span></a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#accueil" class="nav-link">Accueil</a></li>
+          <li><a href="#a-propos" class="nav-link">À propos</a></li>
+          <li><a href="#projets" class="nav-link">Projets</a></li>
+          <li><a href="#competences" class="nav-link">Compétences</a></li>
+          <li><a href="#formation" class="nav-link">Parcours</a></li>
+          <li><a href="#contact" class="nav-link btn-contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="burger-menu" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="accueil" class="hero">
+    <div class="container hero-container-flex">
+      <div class="hero-text-content">
+        <h1 class="hero-title">Dany Brel Djiongo Dontsi</h1>
+        <h2 class="hero-subtitle">
+          Étudiant en informatique <br />
+          <span class="highlight">Développement Web • Systèmes & Réseaux</span>
+        </h2>
+        <p class="hero-description">
+          Passionné par la technologie, je construis ma polyvalence entre le
+          développement d'applications web modernes, la conception
+          d'architectures réseaux sécurisées et l'administration de systèmes.
+          Ambassadeur EPSI Paris, je combine rigueur technique et leadership.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+          <a href="assets/CV_Djiongo_Dontsi_Dany_Brel.pdf" target="_blank" class="btn btn-outline"
+            download>Télécharger mon CV</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- CSS/SVG Tech Illustration -->
+        <div class="tech-window">
+          <div class="window-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="window-body">
+            <div class="code-line">
+              <span class="keyword">const</span>
+              <span class="variable">profile</span> = {
+            </div>
+            <div class="code-line indent">
+              <span class="property">name</span>:
+              <span class="string">"Dany Brel Djiongo"</span>,
+            </div>
+            <div class="code-line indent">
+              <span class="property">role</span>:
+              <span class="string">"IT Student"</span>,
+            </div>
+            <div class="code-line indent">
+              <span class="property">skills</span>: [<span class="string">"Web"</span>, <span
+                class="string">"Network"</span>,
+              <span class="string">"Linux"</span>],
+            </div>
+            <div class="code-line indent">
+              <span class="property">hardWorker</span>:
+              <span class="boolean">true</span>
+            </div>
+            <div class="code-line">};</div>
+            <div class="code-line empty"></div>
+            <div class="code-line">
+              <span class="function">startProject</span>(<span class="variable">profile</span>);
+            </div>
+          </div>
+        </div>
+        <div class="visual-bg-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="a-propos" class="section about">
+    <div class="container">
+      <h2 class="section-title">À propos de moi</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Étudiant en double cursus <strong>Bachelor Informatique EPSI Paris & BTS SIO SLAM</strong>,
+            je maîtrise le cycle de développement logiciel et l'administration système
+            pour concevoir des solutions applicatives performantes et sécurisées.
+            J'aime les projets concrets, le travail d'équipe et comprendre le
+            fonctionnement complet des systèmes, du code jusqu'au serveur.
+          </p>
+          <ul class="about-list">
+            <li>
+              🎓 <strong>Formation :</strong> Bachelor Informatique EPSI + BTS SIO SLAM
+            </li>
+            <li>💻 <strong>Focus :</strong> Dev Web Full-Stack, Linux, Réseaux</li>
+            <li>🏆 <strong>Engagement :</strong> Ambassadeur EPSI Paris 2025</li>
+            <li>
+              🚀 <strong>Approche :</strong> Communication, Leadership, Adaptabilité
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projets" class="section projects">
+    <div class="container">
+      <h2 class="section-title">Mes Projets</h2>
+      <p class="section-subtitle">Réalisations académiques et personnelles</p>
+
+      <!-- Featured Project -->
+      <div class="featured-project">
+        <div class="featured-content">
+          <span class="project-category highlight">🏆 Projet Gagnant Local 2025</span>
+          <h3 class="featured-title">
+            Machine de Rube Goldberg : Snack'O'Matic
+          </h3>
+          <p class="featured-description">
+            Conception et réalisation collaborative d'une machine à réaction
+            en chaîne complexe avec modélisation 3D sur Tinkercad. Gagnant au niveau local (2025) après
+            présentation devant un jury académique, avec qualification au
+            niveau national.
+          </p>
+          <a href="projects/project-workshop.html" class="btn btn-primary">Voir le projet & Certificat</a>
+        </div>
+        <div class="featured-visual">
+          <img src="assets/machine.jpeg" alt="Machine de Rube Goldberg réelle" class="project-image-large" />
+          <span class="card-badge academic featured-badge">Académique</span>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project NEW: Lido-Serena -->
+        <article class="project-card">
+          <div class="project-image-wrapper">
+            <div class="project-image-placeholder" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); height: 200px; display:flex; align-items:center; justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2h18v20H3z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg>
+            </div>
+            <span class="card-badge personal">En cours</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Développement Full-Stack</span>
+            <h3 class="project-title">Application Lido-Serena</h3>
+            <p class="project-description">
+              Application de gestion de restaurant Full-Stack (PHP/MySQL) pour la gestion des commandes, des stocks et de la facturation client en temps réel.
+            </p>
+            <a href="projects/project-lido-serena.html" class="project-link">Voir le détail <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- Project 1: SmartBike -->
+        <article class="project-card">
+          <div class="project-image-wrapper">
+            <img src="assets/smartbike.png" alt="E-commerce SmartBike" class="project-image-large" />
+            <span class="card-badge academic">Académique</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Développement Web</span>
+            <h3 class="project-title">E-commerce SmartBike</h3>
+            <p class="project-description">
+              Site de vente de vélos complet avec système d'inscription,
+              connexion et commande.
+            </p>
+            <a href="projects/project-web.html" class="project-link">Voir le détail <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- Project 2: Network Infra -->
+        <article class="project-card">
+          <div class="project-image-wrapper">
+            <img src="assets/reseau.png" alt="Infrastructure Réseau Sécurisée" class="project-image" />
+            <span class="card-badge academic">Académique</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Réseaux & Systèmes</span>
+            <h3 class="project-title">Infrastructure Sécurisée</h3>
+            <p class="project-description">
+              Conception (HLD/LLD), segmentation et déploiement d'un réseau
+              d'entreprise sécurisé sur environnement virtuel Linux.
+            </p>
+            <a href="projects/project-network.html" class="project-link">Voir le détail <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- Project 3: VR Dream -->
+        <article class="project-card">
+          <div class="project-image-wrapper">
+            <img src="assets/vr.png" alt="VR Dream Experience" class="project-image-large" />
+            <span class="card-badge academic">Académique</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Réalité Virtuelle</span>
+            <h3 class="project-title">VR Dream Experience</h3>
+            <p class="project-description">
+              Création de 3 scènes immersives fantastiques pour susciter
+              l'émerveillement et l'évasion chez l'utilisateur.
+            </p>
+            <a href="projects/project-vr.html" class="project-link">Voir le détail <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- Project 4: Arduino -->
+        <article class="project-card">
+          <div class="project-image-wrapper">
+            <img src="assets/arduino.jpeg" alt="Séquenceur de LED Arduino" class="project-image-large" />
+            <span class="card-badge personal">Personnel</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Électronique & IoT</span>
+            <h3 class="project-title">Séquenceur de LED</h3>
+            <p class="project-description">
+              Projet Arduino Uno : Contrôle séquentiel de LED et découverte de
+              la programmation embarquée (C++).
+            </p>
+            <a href="projects/project-arduino.html" class="project-link">Voir le détail <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- Project 5: EPSI Tech -->
+        <article class="project-card">
+          <div class="project-image-wrapper">
+            <img src="assets/epsitech.png" alt="EPSI Tech – Plateforme E-commerce Informatique"
+              class="project-image-large" />
+            <span class="card-badge academic">Académique</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Développement Web</span>
+            <h3 class="project-title">EPSI Tech – E-commerce Informatique</h3>
+            <p class="project-description">
+              Site e-commerce de matériel informatique avec catalogue, authentification utilisateur et gestion
+              de commandes en base MySQL.
+            </p>
+            <a href="projects/project-epsi-tech.html" class="project-link">Voir le détail <span
+                class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Mini Projects Collection -->
+      <div class="projects-collection-link">
+        <article class="collection-card">
+          <div class="collection-content">
+            <div>
+              <span class="project-category">Informatique Générale (2024-2025)</span>
+              <h3 class="project-title">
+                Collection : Mini-Projets Académiques
+              </h3>
+              <p class="project-description">
+                Retrouvez ici l'ensemble de mes travaux pratiques :
+                Optimisation d'algorithmes Python, Gestionnaire de stock Java/SQL,
+                Scripts d'automatisation et Sites vitrines.
+              </p>
+            </div>
+            <a href="projects/project-system.html" class="btn btn-outline">Explorer la collection complète <span
+                class="arrow">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="competences" class="section skills">
+    <div class="container">
+      <h2 class="section-title">Compétences Techniques</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Développement Web</h3>
+          <ul class="skill-list">
+            <li>HTML5 / CSS3 / JS</li>
+            <li>PHP 8</li>
+            <li>API REST / Postman</li>
+            <li>Déploiement (Vercel/Netlify)</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Données & Algorithmique</h3>
+          <ul class="skill-list">
+            <li>MySQL / phpMyAdmin</li>
+            <li>Merise (MCD/MLD)</li>
+            <li>Python & Java</li>
+            <li>Algorithmique</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Systèmes & IoT</h3>
+          <ul class="skill-list">
+            <li>Linux (Ubuntu, Debian)</li>
+            <li>Architecture Réseau (HLD/LLD)</li>
+            <li>VMware / VirtualBox / ESXi</li>
+            <li>Arduino / Électronique</li>
+            <li>C# / Java</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Outils & Tech</h3>
+          <ul class="skill-list">
+            <li>Git / GitHub</li>
+            <li>VS Code / PyCharm</li>
+            <li>Microsoft Visio</li>
+            <li>VR (Delightex) / Tinkercad</li>
+            <li>Notion</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Languages Section -->
+      <div class="languages-container">
+        <h3>Langues</h3>
+        <div class="languages-list">
+          <div class="language-item">
+            <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2">
+              <rect width="3" height="2" fill="#ED2939" />
+              <rect width="2" height="2" fill="#fff" />
+              <rect width="1" height="2" fill="#002395" />
+            </svg>
+            <div class="lang-details">
+              <strong>Français</strong>
+              <span class="lang-level">Maternel</span>
+            </div>
+          </div>
+          <div class="language-item">
+            <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30">
+              <clipPath id="t">
+                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
+              </clipPath>
+              <path d="M0,0 v30 h60 v-30 z" fill="#00247d" />
+              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
+              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4" />
+              <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
+              <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6" />
+            </svg>
+            <div class="lang-details">
+              <strong>Anglais</strong>
+              <span class="lang-level">Intermédiaire (B1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formation Section -->
+  <section id="formation" class="section timeline-section">
+    <div class="container">
+      <h2 class="section-title">Formation & Parcours</h2>
+      <div class="timeline">
+
+        <!-- BTS SIO -->
+        <div class="timeline-item">
+          <div class="timeline-date">2025 – 2027</div>
+          <div class="timeline-content">
+            <h3>BTS SIO option SLAM</h3>
+            <span class="institution">Spécialisation en conception et développement d'applications métiers</span>
+            <p>
+              Double cursus en parallèle du Bachelor EPSI pour une double compétence
+              développement logiciel et administration systèmes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bachelor EPSI -->
+        <div class="timeline-item">
+          <div class="timeline-date">2025 – 2028</div>
+          <div class="timeline-content">
+            <h3>Bachelor 1 Informatique</h3>
+            <span class="institution">École d'ingénieur EPSI Paris – Courbevoie (92)</span>
+            <p>
+              Formation polyvalente couvrant le développement logiciel,
+              l'administration systèmes & réseaux et la gestion de projets IT.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bac -->
+        <div class="timeline-item">
+          <div class="timeline-date">Juillet 2025</div>
+          <div class="timeline-content">
+            <h3>Baccalauréat Scientifique</h3>
+            <span class="institution">CBI La Fierté – Yaoundé, Cameroun</span>
+            <p>
+              Diplôme obtenu avec mention.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ambassadeur -->
+        <div class="timeline-item">
+          <div class="timeline-date">2025 – Présent</div>
+          <div class="timeline-content">
+            <h3>🏅 Ambassadeur EPSI Paris</h3>
+            <span class="institution">Engagement associatif – EPSI Paris</span>
+            <p>
+              Représentation de l'école lors des salons et journées portes ouvertes
+              pour conseiller les futurs étudiants sur les parcours Bachelor et BTS.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h2 class="section-title" style="text-align: left; margin-left: 0">
+            Me contacter
+          </h2>
+          <p class="contact-text" style="text-align: left; margin: 0">
+            Vous voulez discuter d'un projet, collaborer ou juste dire bonjour
+            ?<br />
+            Je suis toujours ouvert aux échanges !
+          </p>
+        </div>
+
+        <div class="contact-links">
+          <!-- Email with Copy Button -->
+          <div class="contact-item email-box">
+            <div class="email-content">
+              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+              <span>djiongodontsi@gmail.com</span>
+            </div>
+            <button class="copy-btn" aria-label="Copier l'email" onclick="copyEmail()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
+
+          <a href="https://github.com/djiongodontsi" target="_blank" rel="noopener noreferrer"
+            class="contact-item github">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <div class="contact-item phone-box">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+            </svg>
+            <span>07 45 61 21 12</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Dany Brel Djiongo Dontsi. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    function copyEmail() {
+      const email = "djiongodontsi@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        const originalContent = btn.innerHTML;
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalContent;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>
