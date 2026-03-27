@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub – Plateforme Étudiante - Dany Brel Djiongo Dontsi</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="project-nav">
+        <a href="../index.html" class="back-link">← Retour à l'accueil</a>
+    </nav>
+
+    <main class="project-detail-container">
+        <header class="project-header">
+            <span class="project-category-badge">Design UX/UI • Maquette & Prototypage • Atelier EPSI</span>
+            <h1 class="project-title-large">StudyHub — <span class="highlight">Plateforme Étudiante</span></h1>
+            <p class="project-subtitle">Maquette d'une plateforme campus conçue pour centraliser ressources de cours, forum d'entraide et gestion de profil étudiant en un seul endroit.</p>
+            <div class="project-hero-image-container">
+                <img src="../assets/studyhub_home.png" alt="StudyHub – Page d'accueil" class="project-hero-image">
+            </div>
+        </header>
+
+        <section class="project-content-section">
+            <div class="project-info-grid">
+                <div class="info-item">
+                    <h3>Type</h3>
+                    <p>Maquette UX/UI</p>
+                </div>
+                <div class="info-item">
+                    <h3>Outils</h3>
+                    <p>Figma, Node.js, HTML/CSS</p>
+                </div>
+                <div class="info-item">
+                    <h3>Contexte</h3>
+                    <p>Atelier EPSI Paris 2025</p>
+                </div>
+                <div class="info-item">
+                    <h3>Statut</h3>
+                    <p>Maquette complète</p>
+                </div>
+            </div>
+
+            <div class="project-body">
+
+                <h2>🎯 Présentation du projet</h2>
+                <p>
+                    <strong>StudyHub</strong> est une maquette de plateforme étudiante conçue pour centraliser les ressources pédagogiques, proposer un forum de discussion entre étudiants et permettre la gestion d'un profil utilisateur. Ce projet a été développé dans le cadre de l'atelier <em>« Création et développement d'une maquette »</em> à l'EPSI Paris.
+                </p>
+                <p>
+                    L'objectif était de penser une expérience utilisateur claire et intuitive pour répondre aux besoins concrets d'un campus : accès rapide à l'agenda, aux annonces, aux ressources de cours, et entraide entre étudiants.
+                </p>
+
+                <h2>📐 Architecture & Zoning</h2>
+                <p>
+                    Avant de concevoir les maquettes visuelles, j'ai défini l'arborescence complète du projet et réalisé un zoning de la page d'accueil pour structurer les zones de contenu.
+                </p>
+
+                <div class="project-media-grid" style="margin-top: 1.5rem; margin-bottom: 2.5rem;">
+                    <div class="media-item">
+                        <h3>Arborescence + Zoning</h3>
+                        <p>Structure des 4 pages principales (Accueil, Ressources, Forum, Profil) et organisation spatiale avec header, hero, contenu principal, aside et footer.</p>
+                        <img src="../assets/studyhub_zoning.png" alt="Arborescence et zoning StudyHub" class="project-image-small" style="margin-top: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <h2>🖥️ Les 3 pages maquettées</h2>
+
+                <div class="project-media-grid" style="margin-bottom: 2rem;">
+                    <div class="media-item">
+                        <h3>Page Accueil</h3>
+                        <p>Dashboard étudiant avec agenda du jour, dernières annonces, accès rapide et un aside "À venir" affichant les prochains événements campus (TP, deadlines, hackathon).</p>
+                        <img src="../assets/studyhub_home.png" alt="Maquette Accueil StudyHub" class="project-image-small" style="margin-top: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="project-media-grid" style="margin-bottom: 2rem;">
+                    <div class="media-item">
+                        <h3>Page Ressources</h3>
+                        <p>Catalogue de cours filtrable par module (HTML/CSS, JavaScript, Réseaux, Linux, Base de données). Chaque ressource peut être notée et ajoutée en favoris. Accès aux PDF, cheatsheets, vidéos et exercices corrigés.</p>
+                        <img src="../assets/studyhub_resources.png" alt="Maquette Ressources StudyHub" class="project-image-small" style="margin-top: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="project-media-grid" style="margin-bottom: 2.5rem;">
+                    <div class="media-item">
+                        <h3>Page Forum d'entraide</h3>
+                        <p>Espace questions/réponses entre étudiants avec création de posts par catégorie. Affichage des dernières questions actives (Installation Linux, Node.js, CSS, PFsense…). Les meilleurs posts sont mis en avant.</p>
+                        <img src="../assets/studyhub_forum.png" alt="Maquette Forum StudyHub" class="project-image-small" style="margin-top: 1rem; width: 100%;">
+                    </div>
+                </div>
+
+                <h2>⚙️ Stack & Structure technique</h2>
+                <ul class="about-list" style="justify-content: flex-start;">
+                    <li><strong>Design :</strong> Figma (wireframes + maquettes haute fidélité)</li>
+                    <li><strong>Frontend :</strong> HTML5, CSS3 (intégration des maquettes)</li>
+                    <li><strong>Backend :</strong> Node.js avec API REST (dossier server/)</li>
+                    <li><strong>Organisation :</strong> Dossiers séparés assets, public, server, docs, figma</li>
+                </ul>
+
+                <h2>📁 Structure du projet</h2>
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.25rem 1.5rem; margin: 1rem 0 2rem;">
+                    <pre style="font-family: var(--font-mono); font-size: .82rem; color: var(--text-sec); line-height: 2; overflow-x: auto; white-space: pre;">studyhub_project/
+│
+├─ assets/     <span style="color: var(--text-muted);">→ Fichiers de design et images</span>
+├─ public/     <span style="color: var(--text-muted);">→ Assets utilisés côté front-end</span>
+├─ server/     <span style="color: var(--text-muted);">→ Backend Node.js avec API</span>
+├─ docs/       <span style="color: var(--text-muted);">→ Documentation et notes</span>
+├─ figma/      <span style="color: var(--text-muted);">→ Maquettes réalisées sur Figma</span>
+└─ README.md   <span style="color: var(--text-muted);">→ Documentation principale</span></pre>
+                </div>
+
+                <h2>🎨 Choix UX/UI</h2>
+                <ul class="about-list" style="justify-content: flex-start;">
+                    <li><strong>Couleurs :</strong> Fond gris clair (#EEF2F7), bleu primaire (#2563EB) pour les CTA et l'indicateur de navigation active</li>
+                    <li><strong>Cartes :</strong> Contenu organisé en blocs distincts avec coins arrondis pour une lecture fluide et aérée</li>
+                    <li><strong>Navigation :</strong> Indicateur actif souligné, logo "StudyHub" reconnaissable avec icône bulle de chat</li>
+                    <li><strong>Layout Accueil :</strong> Grid 2 colonnes (contenu principal + aside événements) pour maximiser l'information utile</li>
+                </ul>
+
+                <div class="github-card">
+                    <div class="github-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </div>
+                    <div class="github-content">
+                        <h2>Code Source & Maquettes</h2>
+                        <p>Le code source, la documentation technique et les maquettes Figma sont disponibles sur le dépôt GitHub.</p>
+                        <a href="https://github.com/djiongodontsi/StodyHub" target="_blank" class="btn btn-primary">
+                            Accéder au repository <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Dany Brel Djiongo Dontsi. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
