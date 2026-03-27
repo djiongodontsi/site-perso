@@ -1,0 +1,26 @@
+{
+  "name": "site-personnel",
+  "version": "1.0.0",
+  "description": "Portfolio personnel de Dany Brel Djiongo Dontsi, étudiant en informatique (Bachelor EPSI Paris + BTS SIO SLAM).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djiongodontsi/site-perso.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/djiongodontsi/site-perso/issues"
+  },
+  "homepage": "https://github.com/djiongodontsi/site-perso#readme",
+  "devDependencies": {
+    "brunch": "^4.0.2",
+    "css-brunch": "^2.10.0",
+    "javascript-brunch": "^2.10.0"
+  }
+}

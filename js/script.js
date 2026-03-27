@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Toggle Menu Mobile
     const burgerMenu = document.querySelector('.burger-menu');
     const nav = document.querySelector('.nav');
@@ -14,6 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    module.exports = {
+        files: {
+            javascripts: {
+                joinTo: 'app.js'
+            },
+            stylesheets: {
+                joinTo: 'app.css'
+            }
+        },
+        paths: {
+            public: 'public', // Where the built files will go
+            watched: ['app']  // Where your source code lives
+        }
+    };
     // Close mobile menu when clicking a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -25,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky Header Effect
     const header = document.querySelector('.header');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -40,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 const headerOffset = 80;
@@ -61,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
@@ -85,7 +99,7 @@ function copyEmail() {
     navigator.clipboard.writeText(email).then(() => {
         const btn = document.querySelector('.copy-btn');
         const originalContent = btn.innerHTML;
-        
+
         // Change icon to checkmark
         btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
         btn.classList.add('copied');
