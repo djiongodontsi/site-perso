@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RickLab — Portail inter-dimensionnel | Dany Brel Djiongo Dontsi</title>
+<meta name="description" content="RickLab : borne interactive ESP32 avec badge RFID, reconnaissance vocale et IA qui ouvre un portail vers le Monde Réel ou le Monde Virtuel. Workshop National EPSI B2, septembre 2026.">
+<link rel="canonical" href="https://dany-djiongo.netlify.app/projects/project-ricklab">
+<meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1626" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RickLab — Portail inter-dimensionnel">
+<meta property="og:description" content="Borne interactive ESP32 : badge RFID, voix, IA et portail Delightex. Workshop National EPSI B2 2026.">
+<meta property="og:url" content="https://dany-djiongo.netlify.app/projects/project-ricklab">
+<meta property="og:image" content="https://dany-djiongo.netlify.app/assets/ricklab-prototype.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232748D8'/%3E%3Ctext x='32' y='43' font-size='28' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='white'%3EDD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+/* Thème et langue appliqués avant le rendu (mêmes clés que la page d'accueil) */
+(function(){var t,l;try{t=localStorage.getItem('theme');l=localStorage.getItem('lang')}catch(e){}
+if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+document.documentElement.dataset.theme=t;
+document.documentElement.lang=l==='en'?'en':'fr';})();
+</script>
+<style>
+:root{
+  --bg:#F3F5F9;--surface:#FFFFFF;--ink:#16213A;--muted:#56607A;--line:#D9DFEA;
+  --accent:#2748D8;--on-accent:#FFFFFF;--accent-soft:#E3E9FD;
+  --signal:#F0B429;--on-signal:#3B2A00;
+  --r-s:8px;--r-m:14px;
+  --f-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --f-body:'Instrument Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --bg:#0F1626;--surface:#172038;--ink:#E8ECF6;--muted:#9EA9C6;--line:#27324F;
+  --accent:#8AA2FF;--on-accent:#0F1626;--accent-soft:#1F2C58;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:84px}
+html[lang="en"] .fr,html[lang="fr"] .en,[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;letter-spacing:-.02em;font-weight:700;text-wrap:balance}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--accent);color:var(--on-accent);padding:.6rem 1rem;border-radius:var(--r-s);font-weight:600}
+.skip:focus{top:1rem}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Header */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:.6rem;min-height:64px}
+.brand{margin-right:auto;font:700 1.15rem var(--f-display);letter-spacing:-.01em;text-decoration:none}
+.main ul{display:flex;gap:.2rem}
+.main a{display:block;padding:.45rem .85rem;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
+.main a:hover{color:var(--ink)}
+.main a[aria-current="true"]{background:var(--accent-soft);color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 .95rem var(--f-body);text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.12);background:var(--accent);color:var(--on-accent)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.icon-btn{width:40px;height:40px;padding:0;justify-content:center;border-color:var(--line)}
+.icon-btn.txt{font-size:.85rem}
+.burger{display:none}
+
+/* Hero */
+.hero{padding:clamp(2.5rem,7vw,5rem) 0 clamp(2.5rem,5vw,4rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.crumb{color:var(--muted);font-size:.92rem;font-weight:500}
+.crumb a{text-underline-offset:3px}
+.badges{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 1.2rem}
+.pill{padding:.3rem .85rem;border:1px solid var(--line);background:var(--surface);border-radius:999px;font-size:.88rem;font-weight:600}
+.pill.win{background:var(--signal);border-color:transparent;color:var(--on-signal)}
+h1{font-size:clamp(2.3rem,5.6vw,4rem);font-weight:800}
+.role{font:600 clamp(1.05rem,1.8vw,1.3rem)/1.35 var(--f-display);color:var(--accent);margin-top:.8rem}
+.lead{max-width:56ch;color:var(--muted);margin-top:1.1rem}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem}
+.shot{border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;background:var(--surface)}
+.shot img{width:100%;height:auto}
+.shot figcaption{padding:.7rem 1rem;color:var(--muted);font-size:.9rem}
+
+/* Sections */
+section{padding:clamp(3rem,7vw,5.5rem) 0}
+section.alt{background:var(--surface);border-block:1px solid var(--line)}
+h2{font-size:clamp(1.8rem,3.8vw,2.6rem)}
+.sec-head{display:grid;gap:.7rem;margin-bottom:2.2rem;max-width:60ch}
+.sec-head p{color:var(--muted)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;padding:1.6rem 0;border-block:1px solid var(--line)}
+.facts dt{color:var(--muted);font-size:.9rem;font-weight:500}
+.facts dd{font-weight:600;margin-top:.15rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chips li{padding:.2rem .75rem;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.86rem;font-weight:600}
+.chip-btn{padding:.45rem 1rem;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 .92rem var(--f-body);cursor:pointer}
+.chip-btn:hover{border-color:var(--ink)}
+.chip-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem}
+
+/* Simulateur */
+.demo{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.device{padding:1.2rem;border:1px solid var(--line);border-radius:var(--r-m);background:var(--bg)}
+.lcd{max-width:100%;padding:.9rem 1rem;border:6px solid #14161C;border-radius:6px;background:#1D4FD8;color:#E3F0FF;font:700 clamp(.82rem,2.7vw,1.15rem)/1.5 'Courier New',ui-monospace,monospace;letter-spacing:.02em;text-shadow:0 0 2px rgba(255,255,255,.35);overflow:hidden}
+.lcd.off{background:#14161C;color:transparent;text-shadow:none}
+.lcd .row{display:block;white-space:pre;min-height:1.5em}
+.live{min-height:1.6rem;margin-top:.9rem;font-weight:600;font-size:.95rem}
+.controls{margin-top:.6rem;display:grid;gap:.8rem}
+.controls label{display:grid;gap:.35rem;font-weight:600;font-size:.95rem}
+input{font:inherit;padding:.75rem .9rem;border:1.5px solid var(--line);border-radius:var(--r-s);background:var(--surface);color:var(--ink);width:100%}
+input:focus-visible{outline-offset:0;border-color:var(--accent)}
+.presets{display:flex;flex-wrap:wrap;gap:.45rem}
+.presets .chip-btn{font-size:.85rem;padding:.35rem .8rem}
+.note{color:var(--muted);font-size:.9rem;margin-top:1rem}
+.portal{--p1:#7A8299;--p2:#4A5168;width:132px;aspect-ratio:1;margin:1.2rem auto 0;border-radius:50%;background:conic-gradient(var(--p1),var(--p2),var(--p1));-webkit-mask:radial-gradient(circle,transparent 50%,#000 52%);mask:radial-gradient(circle,transparent 50%,#000 52%);opacity:.25;transition:opacity .4s}
+.portal[data-world="real"]{--p1:#3DDC84;--p2:#0E8F4B;opacity:1}
+.portal[data-world="virtual"]{--p1:#39C5E8;--p2:#8A5CFF;opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .portal[data-world="real"],.portal[data-world="virtual"]{animation:spin 3s linear infinite}
+}
+.p-label{text-align:center;color:var(--muted);font-size:.92rem;margin-top:.5rem;min-height:1.5rem}
+.steps{display:grid;gap:.5rem;counter-reset:s}
+.steps li{display:grid;grid-template-columns:2rem 1fr;gap:.8rem;align-items:start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:var(--r-s);background:var(--surface);color:var(--muted);font-size:.95rem;line-height:1.45}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;border:1.5px solid var(--line);font-weight:700;font-size:.9rem}
+.steps li.done{color:var(--ink)}
+.steps li.done::before{content:"\2713";background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+.steps li.cur{border-color:var(--accent);color:var(--ink)}
+.steps li.cur::before{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.steps strong{display:block;font:700 1rem var(--f-display);color:var(--ink)}
+
+/* Architecture */
+.panel h3{font-size:1.3rem;margin-bottom:.4rem}
+.panel>p{color:var(--muted);max-width:60ch}
+.panel .chips{margin-top:1rem}
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.flow{display:flex;flex-wrap:wrap;gap:.6rem 0;margin-top:2rem}
+.flow li{position:relative;margin-right:1.6rem;padding:.45rem .9rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.9rem;font-weight:600}
+.flow li:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:1.6rem;border-top:2px solid var(--accent)}
+.flow-title{margin-top:2rem;font:700 1.05rem var(--f-display)}
+
+/* Stack */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.9rem}
+.tile{padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--r-s);background:var(--bg)}
+.tile strong{display:block;font:700 1.05rem var(--f-display);color:var(--accent);margin-bottom:.15rem}
+.tile span{color:var(--muted);font-size:.95rem}
+
+/* Sprint */
+.day-list{display:grid;gap:.5rem;max-width:640px}
+.day-list li{display:flex;gap:.8rem;align-items:baseline;padding:.65rem .95rem;border:1px solid var(--line);border-radius:var(--r-s);background:var(--surface)}
+.day-list li::before{content:"\2713";color:var(--accent);font-weight:700}
+.day-meta{margin-top:1rem;color:var(--muted);font-size:.92rem}
+
+/* Obstacles */
+details{border:1px solid var(--line);border-radius:var(--r-s);background:var(--surface);margin-bottom:.6rem}
+summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.2rem;font:700 1.05rem var(--f-display);cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 1.5rem/1 var(--f-body);color:var(--accent)}
+details[open] summary::after{content:"\2013"}
+.ob{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:0 1.2rem 1.2rem}
+.ob h4{font:600 .9rem var(--f-body);color:var(--muted);margin-bottom:.2rem}
+
+/* Équipe */
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.person{padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:var(--r-m);background:var(--surface)}
+.person.me{border-color:var(--accent)}
+.person h3{font-size:1.25rem}
+.person .tag{display:inline-block;margin-top:.3rem;font-size:.82rem;font-weight:700;color:var(--accent)}
+.person p{margin-top:.6rem;color:var(--muted);font-size:.95rem}
+.next{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.9rem}
+
+/* Liens et contact */
+.links{display:grid;gap:.9rem;max-width:640px}
+.links a{display:block;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:var(--r-s);background:var(--bg);text-decoration:none}
+.links a:hover{border-color:var(--accent)}
+.links strong{display:block;font:700 1.05rem var(--f-display)}
+.links span{color:var(--accent);font-weight:500;font-size:.95rem;overflow-wrap:anywhere}
+.contact{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.contact-links{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin-top:1.1rem}
+.contact-links a{font:600 1.1rem var(--f-display);text-decoration:none;border-bottom:2px solid var(--line)}
+.contact-links a:hover{border-color:var(--accent)}
+footer{padding:2rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+footer a{text-underline-offset:3px}
+
+@media (max-width:1000px){.team{grid-template-columns:repeat(2,1fr)}.facts{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){
+  .burger{display:inline-flex}
+  .main{position:absolute;inset:64px 0 auto 0;display:none;padding:.5rem 1.25rem 1rem;background:var(--bg);border-bottom:1px solid var(--line)}
+  .main.open{display:block}
+  .main ul{flex-direction:column}
+  .hero-grid,.demo,.arch,.contact{grid-template-columns:1fr}
+  .ob{grid-template-columns:1fr}
+}
+@media (max-width:600px){.team,.facts{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="../css/unified-theme.css">
+</head>
+<body class="project-ricklab">
+<a class="skip" href="#main"><span class="fr">Aller au contenu principal</span><span class="en">Skip to main content</span></a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="/">Dany Brel Djiongo</a>
+    <nav class="main" id="nav" aria-label="Navigation">
+      <ul>
+        <li><a href="#demo"><span class="fr">Simulateur</span><span class="en">Simulator</span></a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#sprint">Sprint</a></li>
+        <li><a href="#equipe"><span class="fr">Équipe</span><span class="en">Team</span></a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="btn icon-btn txt" id="lang" type="button">EN</button>
+    <button class="btn icon-btn" id="theme" type="button" aria-pressed="false"></button>
+    <button class="btn icon-btn burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg class="i" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Aperçu -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="crumb"><a href="/#projets"><span class="fr">Projets</span><span class="en">Projects</span></a></p>
+        <ul class="badges">
+          <li class="pill"><span class="fr">Workshop National B2</span><span class="en">National Workshop B2</span></li>
+          <li class="pill"><span class="fr">Septembre 2026</span><span class="en">September 2026</span></li>
+          <li class="pill"><span class="fr">Groupe de 5</span><span class="en">Team of 5</span></li>
+        </ul>
+        <h1>RickLab™</h1>
+        <p class="role"><span class="fr">Portail inter-dimensionnel : borne interactive de sélection Monde Réel ou Monde Virtuel</span><span class="en">Inter-dimensional portal: an interactive kiosk that sends you to the Real World or the Virtual World</span></p>
+        <p class="lead fr">Un badge RFID identifie l'utilisateur, la borne lui demande à voix haute dans quel monde il veut aller, une IA comprend sa réponse et le portail s'ouvre dans Delightex. Le tout tourne sur un ESP32, dans un boîtier décoré aux couleurs de Rick et Morty.</p>
+        <p class="lead en">An RFID badge identifies the user, the kiosk asks out loud which world they want to visit, an AI understands the answer and the portal opens in Delightex. It all runs on an ESP32, inside an enclosure decorated in Rick and Morty style.</p>
+        <div class="cta">
+          <a class="btn primary" href="#demo"><span class="fr">Essayer la simulation</span><span class="en">Try the simulation</span></a>
+          <a class="btn" href="https://github.com/djiongodontsi/Univers-des-mondes-" target="_blank" rel="noopener"><span class="fr">Voir le code sur GitHub</span><span class="en">View the code on GitHub</span></a>
+        </div>
+      </div>
+      <figure class="shot">
+        <img src="/assets/ricklab-prototype.jpg" width="1200" height="773" alt="Le prototype RickLab : un boîtier décoré Rick et Morty avec un écran LCD qui affiche PORTAIL ACTIVE et demande dans quel monde aller.">
+        <figcaption><span class="fr">Le prototype final : écran LCD 20×4, lecteur RFID et ESP32 dans un boîtier fait maison.</span><span class="en">The final prototype: 20×4 LCD screen, RFID reader and ESP32 in a homemade enclosure.</span></figcaption>
+      </figure>
+    </div>
+    <div class="wrap" style="margin-top:3rem">
+      <dl class="facts">
+        <div><dt><span class="fr">Contexte</span><span class="en">Context</span></dt><dd><span class="fr">5 jours en Scrum, Bachelor 2, EPSI</span><span class="en">5 days in Scrum, Bachelor 2, EPSI</span></dd></div>
+        <div><dt><span class="fr">Contraintes</span><span class="en">Requirements</span></dt><dd><span class="fr">Microcontrôleur, ressource myDiL, brique logicielle</span><span class="en">Microcontroller, myDiL resource, software component</span></dd></div>
+        <div><dt><span class="fr">Mon rôle</span><span class="en">My role</span></dt><dd><span class="fr">Monde Virtuel, API, poster, Git, documentation</span><span class="en">Virtual World, API, poster, Git, documentation</span></dd></div>
+        <div><dt><span class="fr">Technologies clés</span><span class="en">Key technologies</span></dt><dd>ESP32, Python, Groq, Delightex</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Simulateur -->
+  <section class="alt" id="demo">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="fr">Essayez le portail</span><span class="en">Try the portal</span></h2>
+        <p class="fr">Suivez le parcours d'un utilisateur, de la mise sous tension à l'ouverture du portail. L'écran reste en français, comme sur le prototype.</p>
+        <p class="en">Follow a user's journey, from power-on to the portal opening. The screen stays in French, just like on the prototype.</p>
+      </div>
+      <div class="demo">
+        <div>
+          <div class="device">
+            <div class="lcd off" id="lcd" role="img" aria-label="Écran LCD 20×4"></div>
+            <p class="live" id="live" role="status"></p>
+            <div class="controls">
+              <div id="c-power"><button class="btn primary" type="button" id="b-power"><span class="fr">Mettre sous tension</span><span class="en">Power on</span></button></div>
+              <div id="c-badge" hidden><button class="btn primary" type="button" id="b-badge"><span class="fr">Passer le badge RFID</span><span class="en">Tap the RFID badge</span></button></div>
+              <div id="c-voice" hidden>
+                <label for="say"><span class="fr">Votre réponse (à la voix sur la vraie borne)</span><span class="en">Your answer (spoken on the real kiosk)</span></label>
+                <input id="say" maxlength="80" autocomplete="off">
+                <div class="presets" style="margin-top:.6rem">
+                  <button class="chip-btn" type="button" data-say-fr="Emmène-moi dans le monde virtuel" data-say-en="Take me to the virtual world"><span class="fr">Monde virtuel</span><span class="en">Virtual world</span></button>
+                  <button class="chip-btn" type="button" data-say-fr="Je veux retourner dans le monde réel" data-say-en="I want to go back to the real world"><span class="fr">Monde réel</span><span class="en">Real world</span></button>
+                  <button class="chip-btn" type="button" data-say-fr="Je voudrais aller dans un jeu vidéo" data-say-en="I'd like to go into a video game"><span class="fr">Un jeu vidéo</span><span class="en">A video game</span></button>
+                </div>
+                <button class="btn primary" type="button" id="b-send" style="margin-top:.8rem"><span class="fr">Envoyer la réponse</span><span class="en">Send the answer</span></button>
+              </div>
+              <div id="c-reset" hidden><button class="btn" type="button" id="b-reset"><span class="fr">Recommencer</span><span class="en">Start over</span></button></div>
+            </div>
+            <div class="portal" id="portal" data-world="off" aria-hidden="true"></div>
+            <p class="p-label" id="p-label"></p>
+          </div>
+          <p class="note fr">Simulation dans le navigateur : ici, la décision se fait par mots-clés. Sur le prototype, la voix est transcrite par Whisper puis interprétée par un LLM (Groq).</p>
+          <p class="note en">Browser simulation: here the decision uses keywords. On the prototype, speech is transcribed by Whisper and then interpreted by an LLM (Groq).</p>
+        </div>
+        <ol class="steps" id="steps" aria-label="Parcours utilisateur">
+          <li><span><strong><span class="fr">Mise sous tension</span><span class="en">Power on</span></strong><span class="fr">L'écran invite à scanner le badge.</span><span class="en">The screen asks for the badge.</span></span></li>
+          <li><span><strong>Scan RFID</strong><span class="fr">Badge accepté, confirmation à l'écran.</span><span class="en">Badge accepted, confirmation on screen.</span></span></li>
+          <li><span><strong><span class="fr">Question à l'utilisateur</span><span class="en">Question to the user</span></strong><span class="fr">« Dans quel monde voulez-vous aller ? »</span><span class="en">"Which world do you want to go to?"</span></span></li>
+          <li><span><strong><span class="fr">Capture audio</span><span class="en">Audio capture</span></strong><span class="fr">5 secondes via le micro, envoyées au PC.</span><span class="en">5 seconds through the microphone, sent to the PC.</span></span></li>
+          <li><span><strong>Transcription</strong><span class="fr">Groq Whisper-large-v3-turbo, en français.</span><span class="en">Groq Whisper-large-v3-turbo, in French.</span></span></li>
+          <li><span><strong><span class="fr">Décision de l'IA</span><span class="en">AI decision</span></strong><span class="fr">Le LLM détermine RÉEL ou VIRTUEL.</span><span class="en">The LLM decides REAL or VIRTUAL.</span></span></li>
+          <li><span><strong><span class="fr">Affichage</span><span class="en">Display</span></strong><span class="fr">Verdict sur le LCD et message de bienvenue.</span><span class="en">Verdict on the LCD and a welcome message.</span></span></li>
+          <li><span><strong>Animation</strong><span class="fr">Delightex déclenche le portail choisi.</span><span class="en">Delightex triggers the chosen portal.</span></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section id="architecture">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="fr">Trois couches en communication continue</span><span class="en">Three layers talking continuously</span></h2>
+        <p class="fr">Choisissez une couche pour voir ce qu'elle contient.</p>
+        <p class="en">Pick a layer to see what it contains.</p>
+      </div>
+      <div class="arch">
+        <div>
+          <div class="tabs" role="group" aria-label="Couches">
+            <button class="chip-btn" type="button" data-tab="arch" data-t="hw" aria-pressed="true"><span class="fr">Matérielle</span><span class="en">Hardware</span></button>
+            <button class="chip-btn" type="button" data-tab="arch" data-t="sw" aria-pressed="false"><span class="fr">Logicielle</span><span class="en">Software</span></button>
+            <button class="chip-btn" type="button" data-tab="arch" data-t="vis" aria-pressed="false"><span class="fr">Visuelle</span><span class="en">Visual</span></button>
+          </div>
+          <div class="panel" data-group="arch" data-p="hw">
+            <h3><span class="fr">Couche matérielle</span><span class="en">Hardware layer</span></h3>
+            <p class="fr">Le cerveau et les organes d'entrée et de sortie de la borne : un ESP32 lit le badge, pilote l'écran et dialogue avec le PC.</p>
+            <p class="en">The kiosk's brain and its input and output devices: an ESP32 reads the badge, drives the screen and talks to the PC.</p>
+            <ul class="chips"><li>ESP32 + RFID RC522</li><li><span class="fr">Écran LCD I2C 20×4</span><span class="en">20×4 I2C LCD screen</span></li><li><span class="fr">Microphone lavalier</span><span class="en">Lavalier microphone</span></li></ul>
+          </div>
+          <div class="panel" data-group="arch" data-p="sw" hidden>
+            <h3><span class="fr">Couche logicielle</span><span class="en">Software layer</span></h3>
+            <p class="fr">Un script Python orchestre tout : il reçoit le badge de l'ESP32, enregistre la voix, interroge l'IA et renvoie le verdict.</p>
+            <p class="en">A Python script orchestrates everything: it receives the badge from the ESP32, records the voice, queries the AI and sends the verdict back.</p>
+            <ul class="chips"><li><span class="fr">Python (orchestration)</span><span class="en">Python (orchestration)</span></li><li>Whisper + LLM (Groq)</li><li><span class="fr">Communication série UART</span><span class="en">UART serial communication</span></li></ul>
+          </div>
+          <div class="panel" data-group="arch" data-p="vis" hidden>
+            <h3><span class="fr">Couche visuelle</span><span class="en">Visual layer</span></h3>
+            <p class="fr">Les deux mondes sont des scènes Delightex. Une fois la décision prise, le PC envoie l'ordre par WebSocket et le bon portail s'anime.</p>
+            <p class="en">Both worlds are Delightex scenes. Once the decision is made, the PC sends the order over WebSocket and the right portal animates.</p>
+            <ul class="chips"><li>Delightex (WebSocket)</li><li><span class="fr">Animations du portail</span><span class="en">Portal animations</span></li><li><span class="fr">Monde Réel / Virtuel</span><span class="en">Real / Virtual World</span></li></ul>
+          </div>
+          <p class="flow-title"><span class="fr">Le trajet d'une demande</span><span class="en">How a request travels</span></p>
+          <ol class="flow" aria-label="Flux">
+            <li><span class="fr">Badge RFID</span><span class="en">RFID badge</span></li>
+            <li>ESP32</li>
+            <li>UART</li>
+            <li>Python</li>
+            <li>Groq</li>
+            <li>WebSocket</li>
+            <li>Delightex</li>
+          </ol>
+        </div>
+        <figure class="shot">
+          <img src="/assets/ricklab-wiring.jpg" width="1200" height="675" loading="lazy" alt="Montage de test : un ESP32, un écran LCD et un lecteur RFID RC522 reliés par des fils.">
+          <figcaption><span class="fr">Le montage électrique de test, utilisé pour valider le code avant le boîtier.</span><span class="en">The electrical test rig, used to validate the code before building the enclosure.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="alt" id="stack">
+    <div class="wrap">
+      <div class="sec-head"><h2><span class="fr">Outils et justifications</span><span class="en">Tools and why we chose them</span></h2></div>
+      <div class="tabs" role="group" aria-label="Outils">
+        <button class="chip-btn" type="button" data-tab="stack" data-t="mat" aria-pressed="true"><span class="fr">Matériel</span><span class="en">Hardware</span></button>
+        <button class="chip-btn" type="button" data-tab="stack" data-t="soft" aria-pressed="false"><span class="fr">Logiciel</span><span class="en">Software</span></button>
+      </div>
+      <div class="tiles panel" data-group="stack" data-p="mat">
+        <div class="tile"><strong>ESP32</strong><span class="fr">Cerveau embarqué, connecté à l'IA et au PC.</span><span class="en">Embedded brain, connected to the AI and the PC.</span></div>
+        <div class="tile"><strong>RFID RC522</strong><span class="fr">Authentification par badge, un geste simple.</span><span class="en">Badge authentication with one simple gesture.</span></div>
+        <div class="tile"><strong>LCD 20×4 I2C</strong><span class="fr">Interface visuelle qui affiche des phrases complètes.</span><span class="en">Visual interface that shows full sentences.</span></div>
+        <div class="tile"><strong><span class="fr">Micro</span><span class="en">Microphone</span></strong><span class="fr">Capture vocale claire, sans fil.</span><span class="en">Clear, wireless voice capture.</span></div>
+        <div class="tile"><strong><span class="fr">Casque VR</span><span class="en">VR headset</span></strong><span class="fr">Pour simuler et visiter les mondes.</span><span class="en">To simulate and visit the worlds.</span></div>
+        <div class="tile"><strong><span class="fr">Fer à souder</span><span class="en">Soldering iron</span></strong><span class="fr">Pour souder le lecteur RFID.</span><span class="en">To solder the RFID reader.</span></div>
+        <div class="tile"><strong><span class="fr">Cutter, ciseaux, colle, scotch</span><span class="en">Cutter, scissors, glue, tape</span></strong><span class="fr">Découpe et assemblage du boîtier.</span><span class="en">Cutting and assembling the enclosure.</span></div>
+      </div>
+      <div class="tiles panel" data-group="stack" data-p="soft" hidden>
+        <div class="tile"><strong>Trello</strong><span class="fr">Suivre l'avancement du projet.</span><span class="en">Track the project's progress.</span></div>
+        <div class="tile"><strong>Wokwi</strong><span class="fr">Tester le code Arduino sans matériel.</span><span class="en">Test the Arduino code without hardware.</span></div>
+        <div class="tile"><strong>Arduino IDE</strong><span class="fr">Firmware ESP32 officiel.</span><span class="en">Official ESP32 firmware tooling.</span></div>
+        <div class="tile"><strong>Groq API</strong><span class="fr">Whisper et LLM ultra-rapides et gratuits.</span><span class="en">Ultra-fast, free Whisper and LLM.</span></div>
+        <div class="tile"><strong>Delightex</strong><span class="fr">Mondes 3D immersifs et animations.</span><span class="en">Immersive 3D worlds and animations.</span></div>
+        <div class="tile"><strong>Python + VS Code + GitHub</strong><span class="fr">Orchestration de l'IA et gestion du code.</span><span class="en">AI orchestration and code management.</span></div>
+        <div class="tile"><strong>TurboSquid</strong><span class="fr">Télécharger des éléments 3D déjà prêts.</span><span class="en">Download ready-made 3D assets.</span></div>
+        <div class="tile"><strong>Gemini</strong><span class="fr">Assistant IA.</span><span class="en">AI assistant.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sprint -->
+  <section id="sprint">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="fr">Cinq jours de sprint</span><span class="en">A five-day sprint</span></h2>
+        <p class="fr">Le tableau Trello de l'équipe, jour par jour. Toutes les cartes ont été terminées.</p>
+        <p class="en">The team's Trello board, day by day. Every card was completed.</p>
+      </div>
+      <div class="tabs" role="group" aria-label="Jours">
+        <button class="chip-btn" type="button" data-tab="day" data-t="d1" aria-pressed="true"><span class="fr">Lundi</span><span class="en">Monday</span></button>
+        <button class="chip-btn" type="button" data-tab="day" data-t="d2" aria-pressed="false"><span class="fr">Mardi</span><span class="en">Tuesday</span></button>
+        <button class="chip-btn" type="button" data-tab="day" data-t="d3" aria-pressed="false"><span class="fr">Mercredi</span><span class="en">Wednesday</span></button>
+        <button class="chip-btn" type="button" data-tab="day" data-t="d4" aria-pressed="false"><span class="fr">Jeudi</span><span class="en">Thursday</span></button>
+        <button class="chip-btn" type="button" data-tab="day" data-t="d5" aria-pressed="false"><span class="fr">Vendredi</span><span class="en">Friday</span></button>
+      </div>
+      <ul class="day-list panel" data-group="day" data-p="d1">
+        <li><span class="fr">Création des groupes</span><span class="en">Forming the teams</span></li>
+        <li><span class="fr">Brainstorming</span><span class="en">Brainstorming</span></li>
+        <li><span class="fr">Choix de l'idée</span><span class="en">Choosing the idea</span></li>
+        <li><span class="fr">Répartition des tâches</span><span class="en">Allocating tasks</span></li>
+        <li><span class="fr">Création des interfaces</span><span class="en">Designing the interfaces</span></li>
+        <li><span class="fr">Création du dépôt GitHub</span><span class="en">Creating the GitHub repository</span></li>
+      </ul>
+      <ul class="day-list panel" data-group="day" data-p="d2" hidden>
+        <li><span class="fr">Connexion de l'électronique</span><span class="en">Wiring the electronics</span></li>
+        <li><span class="fr">Communication PC ↔ ESP32</span><span class="en">PC ↔ ESP32 communication</span></li>
+        <li><span class="fr">Reconnaissance vocale</span><span class="en">Voice recognition</span></li>
+        <li><span class="fr">Animation du portail Delightex</span><span class="en">Delightex portal animation</span></li>
+      </ul>
+      <ul class="day-list panel" data-group="day" data-p="d3" hidden>
+        <li><span class="fr">Intégration de l'IA (prompt)</span><span class="en">Integrating the AI (prompt)</span></li>
+        <li><span class="fr">Connexion Delightex ↔ Python (WebSockets)</span><span class="en">Delightex ↔ Python link (WebSockets)</span></li>
+        <li><span class="fr">Connexion des mondes au casque virtuel</span><span class="en">Connecting the worlds to the VR headset</span></li>
+        <li><span class="fr">Liaison entre l'écran et l'enregistreur de son</span><span class="en">Linking the screen and the sound recorder</span></li>
+        <li><span class="fr">Suite du cahier des charges et du diaporama</span><span class="en">Continuing the requirements document and slides</span></li>
+      </ul>
+      <ul class="day-list panel" data-group="day" data-p="d4" hidden>
+        <li><span class="fr">Test du flux complet, de bout en bout</span><span class="en">Full end-to-end flow test</span></li>
+        <li><span class="fr">Intégration dans le boîtier</span><span class="en">Fitting everything into the enclosure</span></li>
+        <li><span class="fr">Conception du boîtier V2 (final)</span><span class="en">Designing enclosure V2 (final)</span></li>
+        <li><span class="fr">Documentation technique</span><span class="en">Technical documentation</span></li>
+      </ul>
+      <ul class="day-list panel" data-group="day" data-p="d5" hidden>
+        <li><span class="fr">Préparation de la soutenance</span><span class="en">Preparing the final presentation</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Obstacles -->
+  <section class="alt" id="obstacles">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="fr">Obstacles rencontrés et solutions</span><span class="en">Obstacles and how we solved them</span></h2>
+      </div>
+      <details open>
+        <summary><span class="fr">Synchronisation</span><span class="en">Synchronisation</span></summary>
+        <div class="ob">
+          <div><h4><span class="fr">Problème</span><span class="en">Problem</span></h4><p class="fr">Le scan RFID bloquant et la capture audio sur le PC devaient être coordonnés.</p><p class="en">The blocking RFID scan and the audio capture on the PC had to be coordinated.</p></div>
+          <div><h4><span class="fr">Solution</span><span class="en">Solution</span></h4><p class="fr">Le protocole série a été revu.</p><p class="en">We reworked the serial protocol.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="fr">Latence de la chaîne IA</span><span class="en">AI pipeline latency</span></summary>
+        <div class="ob">
+          <div><h4><span class="fr">Problème</span><span class="en">Problem</span></h4><p class="fr">Enregistrement, Whisper puis LLM dépassaient une seconde.</p><p class="en">Recording, Whisper and the LLM together took more than a second.</p></div>
+          <div><h4><span class="fr">Solution</span><span class="en">Solution</span></h4><p class="fr">Utilisation de modèles turbo et limitation du nombre de tokens.</p><p class="en">We switched to turbo models and capped the number of tokens.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="fr">Reconnaissance vocale</span><span class="en">Voice recognition</span></summary>
+        <div class="ob">
+          <div><h4><span class="fr">Problème</span><span class="en">Problem</span></h4><p class="fr">Le bruit de la salle perturbait la transcription.</p><p class="en">Noise in the room disrupted the transcription.</p></div>
+          <div><h4><span class="fr">Solution</span><span class="en">Solution</span></h4><p class="fr">Filtrage du niveau sonore avant l'envoi à l'API.</p><p class="en">We filter the sound level before sending audio to the API.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="fr">Câblage et alimentation</span><span class="en">Wiring and power</span></summary>
+        <div class="ob">
+          <div><h4><span class="fr">Problème</span><span class="en">Problem</span></h4><p class="fr">Une breadboard trop dense provoquait des faux contacts.</p><p class="en">An overcrowded breadboard caused loose connections.</p></div>
+          <div><h4><span class="fr">Solution</span><span class="en">Solution</span></h4><p class="fr">Passage au boîtier myDiL.</p><p class="en">We moved everything into the myDiL enclosure.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="fr">Sécurité de la clé API</span><span class="en">API key security</span></summary>
+        <div class="ob">
+          <div><h4><span class="fr">Problème</span><span class="en">Problem</span></h4><p class="fr">La clé Groq était écrite en clair dans le code.</p><p class="en">The Groq key was written in plain text in the code.</p></div>
+          <div><h4><span class="fr">Solution</span><span class="en">Solution</span></h4><p class="fr">Déplacée dans une variable d'environnement avant le dépôt sur Git.</p><p class="en">Moved to an environment variable before pushing to Git.</p></div>
+        </div>
+      </details>
+
+      <div class="sec-head" style="margin-top:3.5rem;margin-bottom:1.4rem">
+        <h2 style="font-size:clamp(1.5rem,3vw,2rem)"><span class="fr">Feuille de route après le workshop</span><span class="en">Roadmap after the workshop</span></h2>
+      </div>
+      <div class="next">
+        <div class="tile"><strong><span class="fr">Sécurité API</span><span class="en">API security</span></strong><span class="fr">Clé Groq dans un fichier .env non versionné.</span><span class="en">Groq key in an unversioned .env file.</span></div>
+        <div class="tile"><strong>VAD (Voice Activity)</strong><span class="fr">Détecter la fin de parole au lieu d'une durée fixe.</span><span class="en">Detect the end of speech instead of a fixed duration.</span></div>
+        <div class="tile"><strong><span class="fr">Industrialisation</span><span class="en">Industrialisation</span></strong><span class="fr">Boîtier propre, câblage interne, alimentation intégrée.</span><span class="en">Clean enclosure, internal wiring, built-in power.</span></div>
+        <div class="tile"><strong><span class="fr">Scènes Delightex</span><span class="en">Delightex scenes</span></strong><span class="fr">Transitions et écran de chargement du portail enrichis.</span><span class="en">Richer transitions and portal loading screen.</span></div>
+        <div class="tile"><strong><span class="fr">Capteur PIR</span><span class="en">PIR sensor</span></strong><span class="fr">Réveil automatique de la borne.</span><span class="en">Automatic wake-up of the kiosk.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Équipe -->
+  <section id="equipe">
+    <div class="wrap">
+      <div class="sec-head"><h2><span class="fr">Une équipe de cinq</span><span class="en">A team of five</span></h2></div>
+      <div class="team">
+        <article class="person me"><h3>Dany</h3><span class="tag"><span class="fr">Mon rôle</span><span class="en">My role</span></span><p class="fr">Monde Virtuel, API, poster, Git et documentation.</p><p class="en">Virtual World, API, poster, Git and documentation.</p></article>
+        <article class="person"><h3>Harissou</h3><p class="fr">Firmware ESP32, montage électrique et code embarqué.</p><p class="en">ESP32 firmware, electrical assembly and embedded code.</p></article>
+        <article class="person"><h3>Daniel</h3><p class="fr">Assemblage électronique, Trello et montage Wokwi.</p><p class="en">Electronics assembly, Trello and Wokwi set-up.</p></article>
+        <article class="person"><h3>Francesca</h3><p class="fr">Assemblage électronique et câblage.</p><p class="en">Electronics assembly and wiring.</p></article>
+        <article class="person"><h3>David</h3><p class="fr">Monde Réel, scène Delightex et code de traduction.</p><p class="en">Real World, Delightex scene and translation code.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion et liens -->
+  <section class="alt" id="liens">
+    <div class="wrap arch">
+      <div>
+        <h2><span class="fr">Conclusion</span><span class="en">Conclusion</span></h2>
+        <p class="fr" style="color:var(--muted);margin-top:1rem">Le prototype répond aux exigences du Workshop National B2 : il embarque un microcontrôleur ESP32, mobilise les ressources de fabrication numérique du myDiL et intègre une vraie chaîne logicielle qui articule reconnaissance vocale, IA générative et rendu visuel immersif.</p>
+        <p class="fr" style="margin-top:1rem">Au-delà du fonctionnel, il transforme une interaction technique, l'authentification et le choix d'un utilisateur, en une expérience fidèle à l'esprit de Rick et Morty.</p>
+        <p class="en" style="color:var(--muted);margin-top:1rem">The prototype meets the requirements of the B2 National Workshop: it embeds an ESP32 microcontroller, uses the myDiL digital fabrication resources and integrates a real software chain combining speech recognition, generative AI and immersive visual rendering.</p>
+        <p class="en" style="margin-top:1rem">Beyond the functional side, it turns a technical interaction, a user's authentication and choice, into an experience true to the spirit of Rick and Morty.</p>
+      </div>
+      <div>
+        <h2 style="font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1.2rem"><span class="fr">Liens du projet</span><span class="en">Project links</span></h2>
+        <div class="links">
+          <a href="https://github.com/djiongodontsi/Univers-des-mondes-" target="_blank" rel="noopener"><strong><span class="fr">GitHub : firmware et scripts</span><span class="en">GitHub: firmware and scripts</span></strong><span>github.com/djiongodontsi/Univers-des-mondes-</span></a>
+          <a href="https://edu.delightex.com/BTX-AUK" target="_blank" rel="noopener"><strong><span class="fr">Monde Virtuel (Delightex)</span><span class="en">Virtual World (Delightex)</span></strong><span>edu.delightex.com/BTX-AUK</span></a>
+          <a href="https://edu.delightex.com/LDL-ACG" target="_blank" rel="noopener"><strong><span class="fr">Monde Réel (Delightex)</span><span class="en">Real World (Delightex)</span></strong><span>edu.delightex.com/LDL-ACG</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2><span class="fr">Une question sur ce projet ?</span><span class="en">A question about this project?</span></h2>
+        <p class="fr" style="color:var(--muted);margin-top:.8rem">Écrivez-moi, je serai ravi d'en discuter.</p>
+        <p class="en" style="color:var(--muted);margin-top:.8rem">Write to me, I'd be glad to talk about it.</p>
+        <div class="contact-links">
+          <a href="mailto:djiongodontsi@gmail.com">djiongodontsi@gmail.com</a>
+          <a href="tel:+33745612112">07 45 61 21 12</a>
+        </div>
+      </div>
+      <a class="btn primary" href="/#contact"><span class="fr">Ouvrir le formulaire de contact</span><span class="en">Open the contact form</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><span class="fr">© 2026 Dany Brel Djiongo Dontsi. Tous droits réservés.</span><span class="en">© 2026 Dany Brel Djiongo Dontsi. All rights reserved.</span></p>
+    <a href="/#projets"><span class="fr">Retour aux projets</span><span class="en">Back to projects</span></a>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var root=document.documentElement;
+var lang=root.lang==='en'?'en':'fr';
+var TITLE={fr:"RickLab — Portail inter-dimensionnel | Dany Brel Djiongo Dontsi",en:"RickLab — Inter-dimensional portal | Dany Brel Djiongo Dontsi"};
+var MSG={
+ fr:{theme:"Changer de thème",lang:"Switch to English",wV:"Portail ouvert vers le Monde Virtuel",wR:"Portail ouvert vers le Monde Réel",dV:"Décision de l'IA : VIRTUEL",dR:"Décision de l'IA : RÉEL",nu:"Phrase non comprise : essayez avec « virtuel » ou « réel ».",ready:"Simulateur prêt : mettez la borne sous tension.",ok:"Badge accepté."},
+ en:{theme:"Toggle theme",lang:"Passer en français",wV:"Portal open to the Virtual World",wR:"Portal open to the Real World",dV:"AI decision: VIRTUAL",dR:"AI decision: REAL",nu:"Not understood: try with “virtual” or “real”.",ready:"Simulator ready: power the kiosk on.",ok:"Badge accepted."}
+};
+
+/* ---------- Thème ---------- */
+var themeBtn=$('#theme');
+function paintTheme(){
+  var d=root.dataset.theme==='dark';
+  themeBtn.setAttribute('aria-pressed',d?'true':'false');
+  themeBtn.innerHTML='<svg class="i" aria-hidden="true"><use href="#i-'+(d?'sun':'moon')+'"/></svg>';
+}
+themeBtn.addEventListener('click',function(){
+  var t=root.dataset.theme==='dark'?'light':'dark';
+  root.dataset.theme=t;paintTheme();
+  try{localStorage.setItem('theme',t)}catch(e){}
+});
+
+/* ---------- Langue ---------- */
+var langBtn=$('#lang'),liveKey='ready';
+function setLang(l){
+  lang=l;root.lang=l;document.title=TITLE[l];
+  langBtn.textContent=l==='en'?'FR':'EN';
+  langBtn.setAttribute('aria-label',MSG[l].lang);
+  themeBtn.setAttribute('aria-label',MSG[l].theme);
+  $('#say').setAttribute('placeholder',l==='en'?"e.g. Take me to the virtual world":"ex. Emmène-moi dans le monde virtuel");
+  $('#steps').setAttribute('aria-label',l==='en'?'User journey':'Parcours utilisateur');
+  paintLive();paintPortalLabel();
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+langBtn.addEventListener('click',function(){setLang(lang==='fr'?'en':'fr')});
+
+/* ---------- Menu mobile ---------- */
+var nav=$('#nav'),burger=$('#burger');
+function closeNav(){nav.classList.remove('open');burger.setAttribute('aria-expanded','false')}
+burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false')});
+nav.addEventListener('click',function(e){if(e.target.closest('a'))closeNav()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeNav()});
+
+/* ---------- Section active ---------- */
+var links=$$('.main a[href^="#"]');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      links.forEach(function(a){
+        if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');
+      });
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(function(a){var s=$(a.getAttribute('href'));if(s)io.observe(s)});
+}
+
+/* ---------- Onglets (architecture, outils, sprint) ---------- */
+$$('[data-tab]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var g=b.dataset.tab;
+    $$('[data-tab="'+g+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    $$('[data-group="'+g+'"]').forEach(function(p){p.hidden=p.dataset.p!==b.dataset.t});
+  });
+});
+
+/* ---------- Simulateur du portail ---------- */
+var lcd=$('#lcd'),live=$('#live'),portal=$('#portal'),pLabel=$('#p-label'),say=$('#say');
+var stepEls=$$('#steps li'),run=0,world='off',lastDecision=null,lastNU=false;
+for(var r=0;r<4;r++){var row=document.createElement('span');row.className='row';row.textContent='\u00a0';lcd.appendChild(row)}
+var rows=$$('.row',lcd);
+function sleep(ms){return new Promise(function(res){setTimeout(res,ms)})}
+function clean(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function label(txt){lcd.setAttribute('aria-label',(lang==='en'?'LCD screen: ':'Écran LCD : ')+txt)}
+function show(lines){
+  label(lines.filter(Boolean).join(', '));
+  lcd.classList.remove('off');
+  rows.forEach(function(el,i){el.textContent=lines[i]?clean(lines[i]):'\u00a0'});
+}
+function lcdOff(){label(lang==='en'?'off':'éteint');lcd.classList.add('off');rows.forEach(function(el){el.textContent='\u00a0'})}
+function setStep(n){stepEls.forEach(function(li,i){li.className=i+1<n?'done':(i+1===n?'cur':'')})}
+function group(id){['c-power','c-badge','c-voice','c-reset'].forEach(function(g){$('#'+g).hidden=(g!==id)})}
+function setLive(k){liveKey=k;paintLive()}
+function paintLive(){live.textContent=MSG[lang][liveKey]||''}
+function setWorld(w){world=w;portal.dataset.world=w;paintPortalLabel()}
+function paintPortalLabel(){pLabel.textContent=world==='virtual'?MSG[lang].wV:(world==='real'?MSG[lang].wR:'')}
+function wrap(s,w){
+  s=clean(s.trim());var out=[],cur='';
+  s.split(/\s+/).forEach(function(word){
+    if((cur+' '+word).trim().length>w){out.push(cur);cur=word}else cur=(cur+' '+word).trim();
+  });
+  if(cur)out.push(cur);
+  return out.slice(0,2);
+}
+function decide(s){
+  s=clean(s.toLowerCase());
+  var v=/virtu|\bvr\b|\bjeu|game|numeri|digital|simulation|ordinateur/g,re=/\breel|\breal|physique|terre|dehors|retour|maison|vrai|humain/g;
+  var lv=-1,lr=-1,m;
+  while((m=v.exec(s)))lv=m.index;
+  while((m=re.exec(s)))lr=m.index;
+  if(lv<0&&lr<0)return null;
+  return lv>lr?'virtual':'real';
+}
+function reset(){
+  run++;setWorld('off');lcdOff();setStep(1);group('c-power');say.value='';setLive('ready');
+}
+$('#b-power').addEventListener('click',function(){
+  show(['PORTAIL INTER-DIM','','SCANNEZ LE BADGE','']);setStep(2);group('c-badge');setLive('');
+});
+$('#b-badge').addEventListener('click',async function(){
+  var t=++run;group(null);show(['BADGE ACCEPTE !','','Acces autorise','']);setStep(3);setLive('ok');
+  await sleep(1000);if(t!==run)return;
+  show(['PORTAIL ACTIVE !','Dans quel monde','voulez-vous aller ?','(Virtuel ou Reel)']);
+  setStep(4);setLive('');group('c-voice');say.focus();
+});
+async function send(){
+  var text=say.value.trim();if(!text)return;
+  var t=++run;group(null);setWorld('off');setLive('');
+  show(["J'ECOUTE...",'','Enregistrement 5 s','']);setStep(4);await sleep(1000);if(t!==run)return;
+  show(['TRANSCRIPTION...','Whisper (Groq)','','']);setStep(5);await sleep(800);if(t!==run)return;
+  var w=wrap(text,18);show(['VOUS AVEZ DIT :'].concat(w));await sleep(1000);if(t!==run)return;
+  show(['DECISION IA...','LLM en cours','','']);setStep(6);await sleep(900);if(t!==run)return;
+  var d=decide(text);
+  if(!d){
+    show(["Je n'ai pas compris",'Repetez svp !','(Virtuel ou Reel)','']);
+    setStep(4);setLive('nu');group('c-voice');say.focus();return;
+  }
+  setLive(d==='virtual'?'dV':'dR');
+  show(d==='virtual'?['MONDE VIRTUEL','Bienvenue dans','Rick Virtual World','']:['MONDE REEL','Bienvenue dans','le monde reel','']);
+  setStep(7);await sleep(1000);if(t!==run)return;
+  setStep(8);setWorld(d);await sleep(900);if(t!==run)return;
+  setStep(9);group('c-reset');
+}
+$('#b-send').addEventListener('click',send);
+say.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();send()}});
+$$('.presets .chip-btn').forEach(function(b){
+  b.addEventListener('click',function(){say.value=b.getAttribute('data-say-'+lang);say.focus()});
+});
+$('#b-reset').addEventListener('click',reset);
+
+/* ---------- Démarrage ---------- */
+paintTheme();reset();setLang(lang);
+})();
+</script>
+</body>
+</html>
