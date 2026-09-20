@@ -4,6 +4,7 @@
   "description": "Portfolio personnel de Dany Brel Djiongo Dontsi, étudiant en informatique (Bachelor EPSI Paris + BTS SIO SLAM).",
   "main": "index.js",
   "scripts": {
+    "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
