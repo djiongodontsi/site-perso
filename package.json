@@ -1,7 +1,7 @@
 {
   "name": "site-personnel",
   "version": "1.0.0",
-  "description": "Portfolio personnel de Dany Brel Djiongo Dontsi, étudiant en informatique (Bachelor EPSI Paris + BTS SIO SLAM).",
+  "description": "Portfolio personnel de Dany Djiongo, Ã©tudiant en Bachelor 2 Ã  EPSI Paris, orientÃ© cybersÃ©curitÃ©.",
   "main": "index.js",
   "scripts": {
     "build": "brunch build --production",
@@ -25,3 +25,4 @@
     "javascript-brunch": "^2.10.0"
   }
 }
+

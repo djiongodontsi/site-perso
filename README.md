@@ -1,44 +1,43 @@
-# Portfolio – Dany Brel Djiongo Dontsi
+﻿# Portfolio â€“ Dany Djiongo
 
-Portfolio personnel de Dany Brel Djiongo Dontsi, étudiant en informatique (Bachelor EPSI Paris + BTS SIO SLAM).
+Portfolio personnel de Dany Djiongo, Ã©tudiant en Bachelor 2 Ã  EPSI Paris, orientÃ© cybersÃ©curitÃ©.
 
-## 🔗 Démo en ligne
-[Voir le portfolio](https://djiongodontsi.vercel.app) *(à déployer)*
+## ðŸ”— DÃ©mo en ligne
+[Voir le portfolio](https://djiongodontsi.vercel.app) *(Ã  dÃ©ployer)*
 
-## 📁 Structure du projet
+## ðŸ“ Structure du projet
 ```
 portfolio/
-├── index.html              # Page principale
-├── css/
-│   └── style.css           # Styles globaux
-├── js/
-│   └── script.js           # Interactions JS
-├── assets/                 # Images, CV, icônes
-└── projects/               # Pages détail de chaque projet
-    ├── project-lido-serena.html
-    ├── project-web.html
-    ├── project-network.html
-    ├── project-vr.html
-    ├── project-arduino.html
-    ├── project-epsi-tech.html
-    ├── project-hydrotrack.html
-    ├── project-workshop.html
-    └── project-system.html
+â”œâ”€â”€ index.html              # Page principale
+â”œâ”€â”€ css/
+â”‚   â””â”€â”€ style.css           # Styles globaux
+â”œâ”€â”€ js/
+â”‚   â””â”€â”€ script.js           # Interactions JS
+â”œâ”€â”€ assets/                 # Images, CV, icÃ´nes
+â””â”€â”€ projects/               # Pages dÃ©tail de chaque projet
+    â”œâ”€â”€ project-lido-serena.html
+    â”œâ”€â”€ project-web.html
+    â”œâ”€â”€ project-network.html
+    â”œâ”€â”€ project-vr.html
+    â”œâ”€â”€ project-arduino.html
+    â”œâ”€â”€ project-epsi-tech.html
+    â”œâ”€â”€ project-hydrotrack.html
+    â”œâ”€â”€ project-workshop.html
+    â””â”€â”€ project-system.html
 ```
 
-## 🚀 Déploiement sur GitHub Pages
+## ðŸš€ DÃ©ploiement sur GitHub Pages
 
 1. Forker ou cloner ce repository
 2. Aller dans **Settings > Pages**
-3. Source : **Deploy from a branch** → `main` → `/ (root)`
+3. Source : **Deploy from a branch** â†’ `main` â†’ `/ (root)`
 4. Ton portfolio sera accessible sur `https://[ton-username].github.io/portfolio/`
 
-## 🛠️ Technologies
+## ðŸ› ï¸ Technologies
 - HTML5 / CSS3 / JavaScript Vanilla
 - Google Fonts (Inter + Outfit)
-- Hébergement : Vercel / GitHub Pages
+- HÃ©bergement : Vercel / GitHub Pages
 
-## 📬 Contact
-- Email : djiongodontsi@gmail.com
-- GitHub : [github.com/djiongodontsi](https://github.com/djiongodontsi)
-- Tél : 07 45 61 21 12
+## ðŸ“¬ Contact
+- Contact : utiliser le formulaire du portfolio
+
