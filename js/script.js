@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'card.stockme': "Infrastructure virtualisée, segmentation réseau, pare-feu et services d'entreprise.", 'card.vault': 'Coffre-fort CLI Java sécurisé, chiffrement AES-256-GCM et dérivation PBKDF2.', 'card.studyhub': "Une plateforme d'apprentissage pensée pour organiser ressources, échanges et progression.", 'card.view': 'Voir le projet →',
       'skills.label': 'BOÎTE À OUTILS', 'skills.title': "Ce que j'aime<br><em>mettre en mouvement.</em>", 'skills.security': 'Cybersécurité', 'skills.code': 'Programmation', 'skills.systems': 'Systèmes & réseaux', 'skills.method': 'Méthodes',
       'contact.label': 'CONTACT', 'contact.title': 'Un sujet à explorer ?', 'contact.intro': "Je suis ouvert aux échanges autour d'un stage, d'une alternance ou d'un projet technique. Écrivez-moi, je vous répondrai rapidement.", 'contact.name': 'Votre nom', 'contact.namePlaceholder': 'Prénom et nom', 'contact.email': 'Votre email', 'contact.message': 'Votre message', 'contact.messagePlaceholder': 'Parlez-moi de votre projet...', 'contact.send': "Préparer l’email <span>↗</span>",
-      'footer.text': 'Bachelor 2 · Cybersécurité, code et systèmes', 'modal.title': 'Une interface entre deux mondes', 'modal.body': "Le parcours commence par un badge RFID, continue avec une question vocale et se termine par une décision IA. L'ESP32 pilote l'interaction, Groq Whisper transcrit la voix, le LLM détermine le monde choisi et Delightex rend l'expérience visible.", 'modal.step1': 'Scan du badge et authentification', 'modal.step2': 'Question vocale et transcription', 'modal.step3': 'Décision IA puis animation du portail', 'modal.spec': 'Cahier des charges ↓', 'modal.deck': 'Présentation ↓', 'modal.certificate': 'Certification ↓'
+      'footer.text': 'Bachelor 2 · Développeur web/mobile et cybersécurité', 'modal.title': 'Une interface entre deux mondes', 'modal.body': "Le parcours commence par un badge RFID, continue avec une question vocale et se termine par une décision IA. L'ESP32 pilote l'interaction, Groq Whisper transcrit la voix, le LLM détermine le monde choisi et Delightex rend l'expérience visible.", 'modal.step1': 'Scan du badge et authentification', 'modal.step2': 'Question vocale et transcription', 'modal.step3': 'Décision IA puis animation du portail', 'modal.spec': 'Cahier des charges ↓', 'modal.deck': 'Présentation ↓', 'modal.certificate': 'Certification ↓'
     },
     en: {
       'nav.about': 'About', 'nav.projects': 'Projects', 'nav.skills': 'Skills', 'nav.contact': 'Contact', 'nav.cv': 'Resume <span>↗</span>',
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'card.stockme': 'Virtualized infrastructure, network segmentation, firewall and enterprise services.', 'card.vault': 'Secure Java CLI vault using AES-256-GCM encryption and PBKDF2 derivation.', 'card.studyhub': 'A learning platform designed to organize resources, conversations and progress.', 'card.view': 'View project →',
       'skills.label': 'TOOLBOX', 'skills.title': 'What I like<br><em>to set in motion.</em>', 'skills.security': 'Cybersecurity', 'skills.code': 'Programming', 'skills.systems': 'Systems & networking', 'skills.method': 'Methods',
       'contact.label': 'CONTACT', 'contact.title': 'Something to explore?', 'contact.intro': 'I am open to conversations about an internship, work-study position or technical project. Send me a message and I will get back to you shortly.', 'contact.name': 'Your name', 'contact.namePlaceholder': 'First and last name', 'contact.email': 'Your email', 'contact.message': 'Your message', 'contact.messagePlaceholder': 'Tell me about your project...', 'contact.send': 'Prepare email <span>↗</span>',
-      'footer.text': 'Bachelor 2 · Cybersecurity, code and systems', 'modal.title': 'An interface between two worlds', 'modal.body': 'The journey starts with an RFID badge, continues with a voice question and ends with an AI decision. The ESP32 drives the interaction, Groq Whisper transcribes the voice, the LLM chooses the world and Delightex renders the experience.', 'modal.step1': 'Badge scan and authentication', 'modal.step2': 'Voice question and transcription', 'modal.step3': 'AI decision then portal animation', 'modal.spec': 'Specifications ↓', 'modal.deck': 'Presentation ↓', 'modal.certificate': 'Certificate ↓'
+      'footer.text': 'Bachelor 2 · Web/mobile developer and cybersecurity', 'modal.title': 'An interface between two worlds', 'modal.body': 'The journey starts with an RFID badge, continues with a voice question and ends with an AI decision. The ESP32 drives the interaction, Groq Whisper transcribes the voice, the LLM chooses the world and Delightex renders the experience.', 'modal.step1': 'Badge scan and authentication', 'modal.step2': 'Voice question and transcription', 'modal.step3': 'AI decision then portal animation', 'modal.spec': 'Specifications ↓', 'modal.deck': 'Presentation ↓', 'modal.certificate': 'Certificate ↓'
     }
   };
 
@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const dictionary = translations[selectedLanguage];
     document.documentElement.lang = selectedLanguage;
     document.title = selectedLanguage === 'fr' ? 'Dany Djiongo | Portfolio cybersécurité' : 'Dany Djiongo | Cybersecurity portfolio';
-    document.querySelector('meta[name="description"]').setAttribute('content', selectedLanguage === 'fr' ? 'Portfolio de Dany Djiongo, étudiant en Bachelor 2 à EPSI Paris, orienté cybersécurité.' : 'Dany Djiongo portfolio, Bachelor 2 student at EPSI Paris focused on cybersecurity.');
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', selectedLanguage === 'fr' ? 'Portfolio de Dany Djiongo, étudiant en Bachelor 2 à EPSI Paris, orienté cybersécurité.' : 'Dany Djiongo portfolio, Bachelor 2 student at EPSI Paris focused on cybersecurity.');
     const staticTexts = {
       '.hero h1': { fr: 'Construire des systèmes qui <em>réagissent.</em>', en: 'Building systems that <em>respond.</em>' },
       '.hero-meta span:nth-child(1)': { fr: 'B02 · EPSI Paris', en: 'B02 · EPSI Paris' },
@@ -53,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const menu = document.querySelector('.main-nav');
   const menuToggle = document.querySelector('.menu-toggle');
+  const contactCopy = document.querySelector('.contact-copy');
+  if (contactCopy && !contactCopy.querySelector('.email-signature')) contactCopy.insertAdjacentHTML('beforeend', '<div class="email-signature"><img src="https://peelp.me/avatar-png/djiongodany" alt="Photo de Djiongo Dontsi Dany Brel"><div><strong>Djiongo Dontsi Dany Brel</strong><small>Développement web, ingénieur informatique</small><a href="mailto:djiongodontsi@gmail.com">djiongodontsi@gmail.com</a><a href="https://peelp.me/djiongodany">peelp.me/djiongodany</a></div></div>');
   menuToggle?.addEventListener('click', () => { const open = menu.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(open)); });
   document.querySelectorAll('.main-nav a').forEach((link) => link.addEventListener('click', () => menu.classList.remove('open')));
   const header = document.querySelector('.site-header');
