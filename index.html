@@ -23,13 +23,15 @@
     .email-signature strong{display:block;color:var(--paper);font-size:15px}
     .email-signature small{display:block;margin-top:3px;color:var(--orange);font-size:11px}
     .email-signature a{display:block;margin-top:6px;color:var(--muted);font-size:11px}
+    .main-nav .mobile-cv{display:none}
+    @media(max-width:800px){.main-nav .mobile-cv{display:block}}
   </style>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <header class="site-header"><div class="container header-inner">
     <a class="brand" href="#accueil" aria-label="Dany Djiongo, accueil"><span class="brand-mark">DD</span><span>Dany <strong>Djiongo</strong></span></a>
-    <nav class="main-nav" id="main-nav" aria-label="Navigation principale"><a href="#a-propos" data-i18n="nav.about">À propos</a><a href="#projets" data-i18n="nav.projects">Projets</a><a href="#competences" data-i18n="nav.skills">Compétences</a><a href="#contact" data-i18n="nav.contact">Contact</a></nav>
+    <nav class="main-nav" id="main-nav" aria-label="Navigation principale"><a href="#a-propos" data-i18n="nav.about">À propos</a><a class="mobile-cv" href="assets/CV%20BON.pdf" target="_blank" rel="noopener" data-i18n="nav.cv">CV <span>↗</span></a><a href="#projets" data-i18n="nav.projects">Projets</a><a href="#competences" data-i18n="nav.skills">Compétences</a><a href="#contact" data-i18n="nav.contact">Contact</a></nav>
     <div class="header-actions"><div class="language-switcher" role="group" aria-label="Sélecteur de langue"><button class="language-button active" type="button" data-lang="fr" aria-pressed="true">FR</button><span>/</span><button class="language-button" type="button" data-lang="en" aria-pressed="false">EN</button></div><a class="header-cv" href="assets/CV%20BON.pdf" target="_blank" rel="noopener" data-i18n="nav.cv">CV <span>↗</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button></div>
   </div></header>
   <main>
