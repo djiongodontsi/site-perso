@@ -1,13 +1,13 @@
 /* Shared presentation for portfolio project pages. */
 :root {
-    --project-bg: #07111f;
-    --project-panel: #0d1d31;
-    --project-panel-soft: rgba(13, 29, 49, .72);
-    --project-text: #f4f2ec;
-    --project-muted: #a7b4c5;
-    --project-accent: #ff744b;
-    --project-accent-soft: #9ec8ff;
-    --project-line: rgba(255, 255, 255, .14);
+    --project-bg: #f6f9ff;
+    --project-panel: #ffffff;
+    --project-panel-soft: rgba(255, 255, 255, .8);
+    --project-text: #0d1b2a;
+    --project-muted: #54677d;
+    --project-accent: #ff8a65;
+    --project-accent-soft: #7db6ff;
+    --project-line: rgba(13, 27, 42, .12);
     --project-max: 1180px;
 }
 
@@ -15,8 +15,8 @@ html { background: var(--project-bg); }
 body {
     min-height: 100vh;
     background:
-        radial-gradient(circle at 85% 0%, rgba(158, 200, 255, .11), transparent 30rem),
-        linear-gradient(180deg, var(--project-bg) 0%, #0a1728 100%);
+        radial-gradient(circle at 85% 0%, rgba(125, 182, 255, .12), transparent 30rem),
+        linear-gradient(180deg, var(--project-bg) 0%, #edf5ff 100%);
     color: var(--project-text);
 }
 
