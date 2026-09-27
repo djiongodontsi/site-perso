@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07111f">
-  <meta name="description" content="Portfolio de Dany Djiongo, étudiant en Bachelor 2 à EPSI Paris, orienté cybersécurité, systèmes et projets interactifs.">
-  <title>Dany Djiongo | Portfolio cybersécurité</title>
+  <meta name="description" content="Portfolio de Dany Djiongo, étudiant en Bachelor 2 à EPSI Paris, orienté Developpement Web/Mobile actifs.">
+  <title>Dany Djiongo | Portfolio développement web/mobile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    :root{--paper:#f7faff}
     .direct-contact{display:none!important}
     main{display:flex;flex-direction:column}
     .hero{order:1}.about-section{order:2}.year-2025{order:3}.projects-section#projets{order:4}.projects-section#tous-les-projets{order:5}.skills-section{order:6}.contact-section{order:7}
@@ -18,13 +19,33 @@
     .year-2025 .section-heading .eyebrow{color:#e65431}.year-2025 .section-heading>p{color:#526174}
     .project-links{display:flex;gap:14px;flex-wrap:wrap}
     #projets .section-heading .eyebrow::after{content:' / 2026';color:var(--blue)}
-    .email-signature{display:flex;align-items:flex-start;gap:14px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:Arial,Helvetica,sans-serif}
-    .email-signature img{width:56px;height:56px;border-radius:50%;object-fit:cover}
-    .email-signature strong{display:block;color:var(--paper);font-size:15px}
-    .email-signature small{display:block;margin-top:3px;color:var(--orange);font-size:11px}
-    .email-signature a{display:block;margin-top:6px;color:var(--muted);font-size:11px}
-    .main-nav .mobile-cv{display:none}
-    @media(max-width:800px){.main-nav .mobile-cv{display:block}}
+    .email-signature{display:flex;align-items:flex-start;gap:14px;margin-top:28px;padding:18px 18px 12px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.52);font-family:Arial,Helvetica,sans-serif}
+    .email-signature img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,154,122,.35)}
+    .email-signature strong{display:block;color:var(--ink);font-size:15px}
+    .email-signature small{display:block;margin-top:3px;color:var(--ink-2);font-size:11px}
+    .email-signature a{display:block;margin-top:6px;color:#355779;font-size:11px}
+    .main-nav .mobile-cv{display:none;color:var(--ink-2)}
+    @media(max-width:800px){.main-nav .mobile-cv{display:block;color:var(--ink-2)}}
+    .button-ghost{border-color:rgba(13,27,42,.22);color:var(--ink)}
+    .contact-section{background:#eff7ff;color:var(--ink)}
+    .contact-copy>p:not(.eyebrow){color:#526174}
+    .contact-form label{color:#526174}
+    .contact-form input,.contact-form textarea{background:#fbfdff;color:var(--ink);border-color:rgba(13,27,42,.2)}
+    .contact-form input::placeholder,.contact-form textarea::placeholder{color:#718095;opacity:1}
+    .projects-section{background:#eff7ff;color:var(--ink)}
+    .workshop-feature,.project-card{background:#fbfdff;border-color:var(--line)}
+    .workshop-summary{color:#526174}
+    .project-kicker,.text-link{color:#b84e33}
+    .filter-button.active,.filter-button:hover{border-color:#b84e33;color:#b84e33}
+    .tech-tags span{border-color:rgba(53,87,121,.24);color:#355779}
+    .project-card:hover{border-color:#6da8df}
+    .cyber-image{background:linear-gradient(135deg,#e2f0ff,#f7faff)}
+    .code-symbol{color:#355779}
+    .main-nav.open{background:rgba(255,255,255,.97)}
+    .menu-toggle span{background:var(--ink)}
+    .project-modal{background:#eff7ff;color:var(--ink);border-color:var(--line)}
+    .modal-close{color:var(--ink)}
+    .modal-grid p:not(.project-kicker){color:#526174}
   </style>
 </head>
 <body>
@@ -48,6 +69,7 @@
   <script src="js/script.js"></script>
 </body>
 </html>
+
 
 
 
