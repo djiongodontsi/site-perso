@@ -1,43 +1,105 @@
-﻿# Portfolio â€“ Dany Djiongo
+﻿# Portfolio - Dany Djiongo
 
-Portfolio personnel de Dany Djiongo, Ã©tudiant en Bachelor 2 Ã  EPSI Paris, orientÃ© cybersÃ©curitÃ©.
+Bienvenue sur mon portfolio personnel. Je suis Dany Djiongo, étudiant en Bachelor 2 à EPSI Paris, orienté cybersécurité et développement informatique.
 
-## ðŸ”— DÃ©mo en ligne
-[Voir le portfolio](https://djiongodontsi.vercel.app) *(Ã  dÃ©ployer)*
+Ce site présente mes projets, mes compétences et mon parcours académique. Il a pour objectif de mettre en valeur mes réalisations techniques et mon intérêt pour les domaines du web, des réseaux, de la cybersécurité et de l'innovation.
 
-## ðŸ“ Structure du projet
+## 🌐 Voir le portfolio
+
+- Site en ligne : https://djiongodontsi.vercel.app
+- Repository : ce projet GitHub
+
+## 📁 Structure du projet
+
+```text
+site-perso/
+├── index.html              # Page d'accueil
+├── css/
+│   └── style.css           # Styles globaux
+├── js/
+│   └── script.js           # Interactions JavaScript
+├── assets/                 # Images, icônes, documents
+├── projects/               # Pages détaillées des projets
+│   ├── project-arduino.html
+│   ├── project-epsi-tech.html
+│   ├── project-hydrotrack.html
+│   ├── project-lido-serena.html
+│   ├── project-network.html
+│   ├── project-socializus-console-admin.html
+│   ├── project-studyhub.html
+│   ├── project-system.html
+│   ├── project-veille-technologique.html
+│   ├── project-vr.html
+│   ├── project-web.html
+│   └── project-workshop.html
+├── public/                 # Fichiers publics / build front
+├── README.md               # Documentation du projet
+├── package.json            # Dépendances et scripts du projet
+├── brunch-config.js       # Configuration Brunch
+├── index.html              # Point d'entrée principal
+└── TODO.md                 # Suivi des tâches
 ```
-portfolio/
-â”œâ”€â”€ index.html              # Page principale
-â”œâ”€â”€ css/
-â”‚   â””â”€â”€ style.css           # Styles globaux
-â”œâ”€â”€ js/
-â”‚   â””â”€â”€ script.js           # Interactions JS
-â”œâ”€â”€ assets/                 # Images, CV, icÃ´nes
-â””â”€â”€ projects/               # Pages dÃ©tail de chaque projet
-    â”œâ”€â”€ project-lido-serena.html
-    â”œâ”€â”€ project-web.html
-    â”œâ”€â”€ project-network.html
-    â”œâ”€â”€ project-vr.html
-    â”œâ”€â”€ project-arduino.html
-    â”œâ”€â”€ project-epsi-tech.html
-    â”œâ”€â”€ project-hydrotrack.html
-    â”œâ”€â”€ project-workshop.html
-    â””â”€â”€ project-system.html
+
+## 🚀 Lancer le projet localement
+
+1. Cloner le repository
+2. Ouvrir le dossier du projet
+3. Installer les dépendances :
+
+```bash
+npm install
 ```
 
-## ðŸš€ DÃ©ploiement sur GitHub Pages
+4. Lancer le site en local :
 
-1. Forker ou cloner ce repository
-2. Aller dans **Settings > Pages**
-3. Source : **Deploy from a branch** â†’ `main` â†’ `/ (root)`
-4. Ton portfolio sera accessible sur `https://[ton-username].github.io/portfolio/`
+```bash
+npm start
+```
 
-## ðŸ› ï¸ Technologies
-- HTML5 / CSS3 / JavaScript Vanilla
-- Google Fonts (Inter + Outfit)
-- HÃ©bergement : Vercel / GitHub Pages
+5. Ouvrir le navigateur sur l'URL affichée par le projet
 
-## ðŸ“¬ Contact
-- Contact : utiliser le formulaire du portfolio
+## 🌍 Déploiement
+
+Le portfolio peut être déployé sur plusieurs plateformes, notamment :
+
+- Vercel
+- GitHub Pages
+- Netlify
+
+### Exemple de déploiement sur GitHub Pages
+
+1. Aller dans les paramètres du repository
+2. Ouvrir la section **Pages**
+3. Choisir **Deploy from a branch**
+4. Sélectionner la branche principale et le dossier racine
+5. Valider pour publier le site
+
+## 🛠️ Technologies utilisées
+
+- HTML5
+- CSS3
+- JavaScript vanilla
+- Brunch
+- Google Fonts
+- Design responsive
+
+## 🧠 Compétences visées
+
+- Développement web
+- Cybersécurité
+- Réseaux et infrastructure
+- Gestion de projets techniques
+- Innovation et prototypage
+- Présentation de solutions numériques
+
+## 📬 Contact
+
+Pour toute demande de collaboration, de projet ou de contact professionnel :
+
+- Utiliser le formulaire de contact disponible sur le portfolio
+- Ou me contacter via le canal de communication indiqué sur le site
+
+## 📝 Note
+
+Ce projet représente mon portfolio personnel et sert de support pour présenter mes compétences, mes projets et mon évolution dans le domaine du numérique et de la cybersécurité.
 
