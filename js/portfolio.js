@@ -53,8 +53,42 @@
     }, { threshold: 0.05 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   } else document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  const contactForm = document.querySelector('.contact-form');
+  contactForm?.addEventListener('submit', async event => {
+    event.preventDefault();
+    const button = contactForm.querySelector('button[type="submit"]');
+    const status = contactForm.querySelector('.form-status');
+    button.disabled = true;
+    status.textContent = 'Envoi en cours…';
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(contactForm)).toString()
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      window.location.assign(contactForm.getAttribute('action'));
+    } catch (_) {
+      status.textContent = 'Le message n’a pas pu être envoyé. Réessayez ou écrivez à djiongodontsi@gmail.com.';
+      button.disabled = false;
+    }
+  });
+  const veilleFilters = [...document.querySelectorAll('.veille-filter')];
+  veilleFilters.forEach(button => button.addEventListener('click', () => {
+    veilleFilters.forEach(filter => {
+      const active = filter === button;
+      filter.classList.toggle('active', active);
+      filter.setAttribute('aria-pressed', String(active));
+    });
+    let count = 0;
+    document.querySelectorAll('.veille-article').forEach(article => {
+      article.hidden = button.dataset.topic !== 'all' && article.dataset.topic !== button.dataset.topic;
+      if (!article.hidden) count++;
+    });
+    document.getElementById('veilleCount').textContent = `${count} article${count > 1 ? 's' : ''}`;
+  }));
   const cards = [...document.querySelectorAll('.project-card-custom')];
-  const filters = [...document.querySelectorAll('.filter-btn')];
+  const filters = [...document.querySelectorAll('.filter-btn[data-filter]')];
   filters.forEach(button => button.addEventListener('click', () => {
     filters.forEach(filter => {
       const active = filter === button;
@@ -65,6 +99,9 @@
     cards.forEach(card => {
       card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter;
       if (!card.hidden) { count++; card.classList.add('visible'); }
+    });
+    document.querySelectorAll('.project-year').forEach(group => {
+      group.hidden = ![...group.querySelectorAll('.project-card-custom')].some(card => !card.hidden);
     });
     const status = document.getElementById('filterCount');
     if (status) status.textContent = `${count} projet${count > 1 ? 's' : ''}`;
