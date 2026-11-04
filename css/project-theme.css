@@ -1,0 +1,15 @@
+:root {
+  --project-bg: #f5f3ee;
+  --project-panel: #faf8f4;
+  --project-panel-soft: #faf8f4;
+  --project-text: #0a0a0f;
+  --project-muted: #64647a;
+  --project-accent: #d52b49;
+  --project-accent-soft: #f5c6ce;
+  --project-line: rgba(10,10,15,.12);
+}
+body { background: var(--project-bg); font-family: 'Bricolage Grotesque', sans-serif; }
+.project-title-large,.project-body h2,.project-body h3 { font-family: 'Syne', sans-serif; }
+.project-category-badge,.project-hero-image-container,.project-info-grid,.project-content-section { border-radius: 16px; }
+.project-hero-image-container { box-shadow: 0 16px 48px rgba(10,10,15,.08); }
+.project-body a { color: var(--project-accent); }
