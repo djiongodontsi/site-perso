@@ -1527,3 +1527,34 @@ object {
 .marquee-section { background: #17171f; }
 @media(max-width:768px) { .content-grid { grid-template-columns: 1fr; } .hero-inner { padding-left: 1.25rem; padding-right: 1.25rem; } .contact-band { padding: 1.5rem; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation: none!important; transition: none!important; } .anim,.reveal { opacity: 1; transform: none; } }
+
+/* Parcours, chronologie et contact */
+.cursus-detail { color: var(--muted); margin: .75rem 0; }
+.project-order-note { max-width: 78ch; color: var(--muted); margin: 1rem 0 3rem; }
+.project-year { margin-bottom: 3.5rem; }
+.project-year[hidden] { display: none; }
+.project-year-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem); padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.project-card-custom .project-dates { font-size: .78rem; line-height: 1.7; }
+.contact-form { width: 100%; display: grid; gap: 1.25rem; }
+.contact-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.contact-form label { display: grid; gap: .5rem; font-weight: 500; }
+.contact-form input, .contact-form textarea { width: 100%; box-sizing: border-box; padding: .9rem 1rem; background: var(--paper); color: var(--ink); border: 1px solid var(--border); border-radius: 8px; font: inherit; }
+.contact-form textarea { resize: vertical; min-height: 150px; }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.contact-form .btn { justify-self: start; cursor: pointer; }
+.contact-form .btn:disabled { opacity: .65; cursor: wait; }
+.contact-note, .form-status { font-size: .9rem; }
+.detail-cover { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--r); }
+@media (max-width: 600px) { .contact-fields { grid-template-columns: 1fr; } }
+
+.veille-heading { margin: 3rem 0 1.5rem; font-family: var(--font-display); }
+.veille-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.veille-article { display: flex; flex-direction: column; }
+.veille-article[hidden] { display: none; }
+.veille-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; margin-bottom: 1.25rem; }
+.veille-meta time, .veille-source-note { color: var(--muted); font-size: .85rem; }
+.veille-article h2 { font-size: 1.4rem; }
+.veille-article a { margin-top: auto; color: var(--electric); font-weight: 600; }
+.veille-source-note { margin-top: 1.5rem; }
+.veille-rating span { white-space: nowrap; color: var(--electric); }
+@media (max-width: 768px) { .veille-grid { grid-template-columns: 1fr; } }
