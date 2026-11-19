@@ -3,7 +3,7 @@
   const applyTheme = (dark) => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
     themeToggle?.setAttribute('aria-pressed', String(dark));
-    themeToggle?.setAttribute('aria-label', dark ? 'Activer le thème clair' : 'Activer le thème sombre');
+    themeToggle?.setAttribute('aria-label', window.portfolioLanguage.translate(dark ? 'Activer le thème clair' : 'Activer le thème sombre'));
     if (themeToggle) themeToggle.textContent = dark ? '☼' : '◐';
   };
   let dark = false;
@@ -59,7 +59,7 @@
     const button = contactForm.querySelector('button[type="submit"]');
     const status = contactForm.querySelector('.form-status');
     button.disabled = true;
-    status.textContent = 'Envoi en cours…';
+    status.textContent = window.portfolioLanguage.translate('Envoi en cours…');
     try {
       const response = await fetch('/', {
         method: 'POST',
@@ -69,7 +69,7 @@
       if (!response.ok) throw new Error('Submission failed');
       window.location.assign(contactForm.getAttribute('action'));
     } catch (_) {
-      status.textContent = 'Le message n’a pas pu être envoyé. Réessayez ou écrivez à djiongodontsi@gmail.com.';
+      status.textContent = window.portfolioLanguage.translate('Le message n’a pas pu être envoyé. Réessayez ou écrivez à djiongodontsi@gmail.com.');
       button.disabled = false;
     }
   });
@@ -104,6 +104,6 @@
       group.hidden = ![...group.querySelectorAll('.project-card-custom')].some(card => !card.hidden);
     });
     const status = document.getElementById('filterCount');
-    if (status) status.textContent = `${count} projet${count > 1 ? 's' : ''}`;
+    if (status) status.textContent = `${count} ${document.documentElement.lang === 'en' ? 'project' : 'projet'}${count > 1 ? 's' : ''}`;
   }));
 })();
